@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../../lib/apiRequest";
+import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { updateUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError("")
+    setError("");
     const formData = new FormData(e.target);
 
-    const username = formData.get("username");
+    const username = formData.get("username");  //geting users from form data just like in profileUpdatePage
     const password = formData.get("password");
 
     try {
@@ -23,10 +25,9 @@ function Login() {
         password,
       });
 
-      localStorage.setItem("user", JSON.stringify(res.data))
+      updateUser(res.data);
 
       navigate("/");
-      
     } catch (err) {
       setError(err.response.data.message);
     } finally {

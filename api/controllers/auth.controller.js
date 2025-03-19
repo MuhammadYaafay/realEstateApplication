@@ -18,8 +18,6 @@ export const register = async (req, res) => {
       },
     });
 
-    console.log(newUser);
-
     res.status(201).json({ message: "user created successfully!" });
   } catch (err) {
     console.log(err);
@@ -67,7 +65,7 @@ export const login = async (req, res) => {
         maxAge: age,
       })
       .status(200)
-      .json();
+      .json(userInfo);  //was'nt givin userinfo
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "failed to login", error: err.message });

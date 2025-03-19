@@ -6,6 +6,7 @@ import apiRequest from "../../lib/apiRequest";
 function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
