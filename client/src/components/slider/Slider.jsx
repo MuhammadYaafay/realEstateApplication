@@ -18,7 +18,7 @@ function Slider({ images }) {
         setImageIndex(imageIndex + 1);
       }
     }
-  };
+  }; 
 
   return (
     <div className="slider">

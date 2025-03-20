@@ -11,20 +11,7 @@ dotenv.config(); // Loads environment variables from .env file
 
 const app = express();
 
-const allowedOrigins = process.env.CLIENT_URL.split(",");
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
-
-// app.use(cors({origin:process.env.CLIENT_URL, credentials: true}));
+app.use(cors({origin:process.env.CLIENT_URL, credentials: true}));
 app.use(cookieParser()); 
 app.use(express.json());
 
